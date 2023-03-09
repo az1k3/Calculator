@@ -34,29 +34,67 @@ do
 {
     Console.Write("Please choose an operation for these numbers (+, -, *, /) : ");
 
-    // Use a switch statement to do the math.
+    Calculator calculator = new Calculator();
+
     switch (Console.ReadLine())
     {
         case "+":
-            result = num1 + num2;
-            Console.WriteLine($"Your result: {num1} + {num2} = " + (num1 + num2));
+            result = calculator.Add(num1, num2);
+            Helper.ShowResult(num1, num2, result, '+');
             break;
         case "-":
-            Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
+            result = calculator.Substract(num1, num2);
+            Helper.ShowResult(num1, num2, result, '-');
             break;
         case "*":
-            Console.WriteLine($"Your result: {num1} * {num2} = " + (num1 * num2));
+            result = calculator.Multiply(num1, num2);
+            Helper.ShowResult(num1, num2, result, '*');
             break;
         case "/":
-            Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2));
+            result = calculator.Divide(num1, num2);
+            Helper.ShowResult(num1, num2, result, '/');
             break;
         default:
             Console.WriteLine("Wrong input");
             break;
     }
 
-    Console.Write("Do you want to continue(y/n/exit):");
+    Console.Write("Do you want to continue(y/exit):");
     value = Console.ReadLine();
 }
 while (value == "y" || value == "Y");
+
+
+public static class Helper
+{
+    public static void ShowResult(double first, double second, double result, char operation)
+    {
+        Console.WriteLine($"Your result: {first} {operation} {second} = {result}");
+    }
+}
+
+public class Calculator
+{
+    public double Add(double first, double second)
+    {
+        double sum = first + second;
+        return sum;
+    }
+    public double Substract(double first, double second)
+    {
+        double substract = first - second;
+        return substract;
+    }
+    public double Multiply(double first, double second)
+    {
+        double multiply = first * second;
+        return multiply;
+    }
+    public double Divide(double first, double second)
+    {
+        double divide = first / second;
+        return divide;
+    }
+}
+
 
